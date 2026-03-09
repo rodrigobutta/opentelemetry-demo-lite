@@ -28,10 +28,10 @@ jobs:
             runner: ubuntu-24.04-arm
             arch: arm64
             emulated: false
-          - platform: linux/arm/v7
-            runner: ubuntu-latest
-            arch: armv7
-            emulated: true
+          # - platform: linux/arm/v7
+          #   runner: ubuntu-latest
+          #   arch: armv7
+          #   emulated: true
 
     steps:
       - name: Checkout
