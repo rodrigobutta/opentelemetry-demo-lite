@@ -22,9 +22,6 @@ services:
       - SIGNOZ_INGESTION_KEY=${SIGNOZ_INGESTION_KEY:-}
       - OTLP_INSECURE=${OTLP_INSECURE:-false}
       - OTLP_INSECURE_SKIP_VERIFY=${OTLP_INSECURE_SKIP_VERIFY:-false}
-    ports:
-      - "4317:4317"
-      - "4318:4318"
     depends_on:
       redis:
         condition: service_healthy
