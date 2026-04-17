@@ -1,6 +1,6 @@
 services:
   otel-collector:
-    image: otel/opentelemetry-collector-contrib:0.91.0
+    image: otel/opentelemetry-collector-contrib:0.150.1
     hostname: otel-collector
     container_name: otel-collector
     command: ["--config=/etc/otel-collector-config.yaml"]
@@ -22,10 +22,17 @@ services:
       - SIGNOZ_INGESTION_KEY=${SIGNOZ_INGESTION_KEY:-}
       - OTLP_INSECURE=${OTLP_INSECURE:-false}
       - OTLP_INSECURE_SKIP_VERIFY=${OTLP_INSECURE_SKIP_VERIFY:-false}
+      - POSTGRESQL_ENDPOINT=${POSTGRESQL_ENDPOINT}
+      - POSTGRESQL_USERNAME=${POSTGRESQL_USERNAME}
+      - POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD}
+      - POSTGRESQL_DATABASE=${POSTGRESQL_DATABASE}
+
     depends_on:
       redis:
         condition: service_healthy
-
+    ports:
+      - "4317:4317"
+      - "4318:4318"
   redis:
     image: redis:7-alpine
     container_name: redis
