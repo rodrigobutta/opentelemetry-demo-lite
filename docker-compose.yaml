@@ -3,7 +3,7 @@ services:
     image: otel/opentelemetry-collector-contrib:0.91.0
     hostname: otel-collector
     container_name: otel-collector
-    command: [ "--config=/etc/otel-collector-config.yaml" ]
+    command: ["--config=/etc/otel-collector-config.yaml"]
     volumes:
       - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml:ro
       # Mount host filesystem for hostmetrics receiver
@@ -30,7 +30,16 @@ services:
     image: redis:7-alpine
     container_name: redis
     # Enable logging to file for collector to pick up (use /data which has correct permissions)
-    command: [ "redis-server", "--appendonly", "yes", "--logfile", "/data/redis.log", "--loglevel", "notice" ]
+    command:
+      [
+        "redis-server",
+        "--appendonly",
+        "yes",
+        "--logfile",
+        "/data/redis.log",
+        "--loglevel",
+        "notice",
+      ]
     volumes:
       - redis-data:/data
     healthcheck:
